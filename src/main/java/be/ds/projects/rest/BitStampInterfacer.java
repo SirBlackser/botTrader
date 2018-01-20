@@ -1,6 +1,7 @@
 package be.ds.projects.rest;
 
 import be.ds.projects.enums.CurrencyPair;
+import be.ds.projects.model.OrderBook;
 import be.ds.projects.model.Ticker;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
@@ -26,6 +27,15 @@ public class BitStampInterfacer {
                 .routeParam("currency_pair", currencyPair.currencyPair())
                 .asJson().getBody().toString();
         return new ObjectMapper().readValue(jsonResponse, Ticker.class);
+    }
+
+    private static final String ORDER_BOOK_ENDPOINT = "https://www.bitstamp.net/api/v2/order_book/{currency_pair}/";
+
+    public static OrderBook orderBook(final CurrencyPair currencyPair) throws UnirestException, IOException {
+        final String jsonResponse = Unirest.get(ORDER_BOOK_ENDPOINT)
+                .routeParam("currency_pair", currencyPair.currencyPair())
+                .asJson().getBody().toString();
+        return new ObjectMapper().readValue(jsonResponse, OrderBook.class);
     }
 
 }

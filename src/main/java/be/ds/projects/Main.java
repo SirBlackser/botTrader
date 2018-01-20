@@ -12,8 +12,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         fixUnirestInvalidCookieHeader();
 
-        System.out.println(JavaToStringUtil.makePretty(BitStampInterfacer.ticker(CurrencyPair.BTC2EUR)));
-        System.out.println(JavaToStringUtil.makePretty(BitStampInterfacer.hourlyTicker(CurrencyPair.BTC2EUR)));
+//        System.out.println(JavaToStringUtil.makePretty(BitStampInterfacer.ticker(CurrencyPair.BTC2EUR)));
+//        System.out.println(JavaToStringUtil.makePretty(BitStampInterfacer.hourlyTicker(CurrencyPair.BTC2EUR)));
+        System.out.println(JavaToStringUtil.makePretty(BitStampInterfacer.orderBook(CurrencyPair.BTC2EUR)));
     }
 
     private static void fixUnirestInvalidCookieHeader() {

@@ -10,7 +10,7 @@ public enum CurrencyPair {
 
     private final String currencyPair;
 
-    CurrencyPair(String currencyPair) {
+    CurrencyPair(final String currencyPair) {
         this.currencyPair = currencyPair;
     }
 

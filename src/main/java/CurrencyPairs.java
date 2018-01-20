@@ -1,4 +1,4 @@
-public enum currencyPairs {
+public enum CurrencyPairs {
     btcToEur("btceur"),
     rippleToEur("xrpeur"),
     liteCoinToEur("ltceur"),
@@ -8,7 +8,7 @@ public enum currencyPairs {
 
     private final String pair;
 
-    private currencyPairs(String pair) {
+    private CurrencyPairs(String pair) {
         this.pair = pair;
     }
 

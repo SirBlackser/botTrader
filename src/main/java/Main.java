@@ -1,5 +1,9 @@
-import jdk.nashorn.internal.parser.JSONParser;
+import com.google.gson.GsonBuilder;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,8 +16,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            System.out.println(main.java.com.company.currencyPairs.btcToEur.toPair());
-            URL url = new URL("https://www.bitstamp.net/api/v2/ticker/"+ main.java.com.company.currencyPairs.btcToEur.toPair() + "/");
+            System.out.println(CurrencyPairs.btcToEur.toPair());
+            URL url = new URL("https://www.bitstamp.net/api/v2/ticker/"+ CurrencyPairs.btcToEur.toPair() + "/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -27,13 +31,20 @@ public class Main {
                     (conn.getInputStream())));
 
             String output;
+            String test = "";
             System.out.println("Output from Server .... \n");
             while ((output = br.readLine()) != null) {
-                System.out.println(output);
+                System.out.println("output: " + output);
+                test += output;
             }
-
-            JSONParser parser = new JSONParser();
-            JSONObject
+            try {
+                JSONObject jsonObject = (JSONObject) new JSONParser().parse(test);
+                System.out.println(jsonObject.toString());
+                Ticker ticker = new GsonBuilder().create().fromJson(jsonObject.toString(), Ticker.class);
+                System.out.println("Ticker: " + ticker.toString());
+            } catch (ParseException PE) {
+                System.out.println("failed to parse String: " + PE.toString());
+            }
 
             conn.disconnect();
 

@@ -1,32 +1,35 @@
-public class ticker {
+public class Ticker {
     //Last BTC price (average I guess)
-    int last;
+    Double last;
 
     //Highest price in the last 24 hours
-    int high;
+    Double high;
 
     //Lowest price in the last 24 hours
-    int low;
+    Double low;
 
     //24h volume weighted average pcire
-    int vwap;
+    Double vwap;
 
     //volume of the last 24 hours
-    int volume;
+    Double volume;
 
     //highest buy order (atm or last 24h?)
-    int bid;
+    Double bid;
 
     //lowest buy order (last 24h or atm?)
-    int ask;
+    Double ask;
 
     //unix timestamp
-    Long timestamp;
+    Double timestamp;
 
     //first price of the day
-    int open;
+    Double open;
 
-    private ticker(int last, int high, int low, int vwap, int volume, int bid, int ask, Long timestamp, int open) {
+    public Ticker() {
+    }
+
+    private Ticker(Double last, Double high, Double low, Double vwap, Double volume, Double bid, Double ask, Double timestamp, Double open) {
         this.last = last;
         this.high = high;
         this.low = low;
@@ -38,75 +41,75 @@ public class ticker {
         this.open = open;
     }
 
-    public int getLast() {
+    public Double getLast() {
         return last;
     }
 
-    public void setLast(int last) {
+    public void setLast(Double last) {
         this.last = last;
     }
 
-    public int getHigh() {
+    public Double getHigh() {
         return high;
     }
 
-    public void setHigh(int high) {
+    public void setHigh(Double high) {
         this.high = high;
     }
 
-    public int getLow() {
+    public Double getLow() {
         return low;
     }
 
-    public void setLow(int low) {
+    public void setLow(Double low) {
         this.low = low;
     }
 
-    public int getVwap() {
+    public Double getVwap() {
         return vwap;
     }
 
-    public void setVwap(int vwap) {
+    public void setVwap(Double vwap) {
         this.vwap = vwap;
     }
 
-    public int getVolume() {
+    public Double getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(Double volume) {
         this.volume = volume;
     }
 
-    public int getBid() {
+    public Double getBid() {
         return bid;
     }
 
-    public void setBid(int bid) {
+    public void setBid(Double bid) {
         this.bid = bid;
     }
 
-    public int getAsk() {
+    public Double getAsk() {
         return ask;
     }
 
-    public void setAsk(int ask) {
+    public void setAsk(Double ask) {
         this.ask = ask;
     }
 
-    public Long getTimestamp() {
+    public Double getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
+    public void setTimestamp(Double timestamp) {
         this.timestamp = timestamp;
     }
 
-    public int getOpen() {
+    public Double getOpen() {
         return open;
     }
 
-    public void setOpen(int open) {
+    public void setOpen(Double open) {
         this.open = open;
     }
     @Override

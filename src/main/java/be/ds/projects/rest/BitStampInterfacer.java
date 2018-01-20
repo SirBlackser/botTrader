@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class BitStampInterfacer {
 
+    private static final String TICKER_ENDPOINT_TEST = "http://localhost:8080/api/v2/ticker/{currency_pair}/";
+
     private static final String TICKER_ENDPOINT = "https://www.bitstamp.net/api/v2/ticker/{currency_pair}/";
 
     public static Ticker ticker(final CurrencyPair currencyPair) throws UnirestException, IOException {

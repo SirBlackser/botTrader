@@ -19,7 +19,6 @@ public class Application {
         n.setEmail("steve@gmail.com");
 
         userRepository.save(n);
-
     }
 
 }

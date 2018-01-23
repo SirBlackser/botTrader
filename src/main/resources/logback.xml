@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_DIR" value="logs" />
+
+    <appender name="APPLICATION_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/application.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TRADER_LOG" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/trader.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="trader-log" level="INFO" additivity="false">
+        <appender-ref ref="TRADER_LOG"/>
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="APPLICATION_LOG"/>
+    </root>
+
+</configuration>

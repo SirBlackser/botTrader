@@ -1,3 +1,9 @@
+# ignore IntelliJ project files
 .idea/
 *.iml
+
+# ignore target folder
 target/
+
+# ignore logs folder
+logs/

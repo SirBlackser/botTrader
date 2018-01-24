@@ -1,5 +1,8 @@
 package be.ds.projects.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Answer {
     Long ID;
     Long dateTime;

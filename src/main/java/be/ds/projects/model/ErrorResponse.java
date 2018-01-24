@@ -1,10 +1,13 @@
 package be.ds.projects.model;
 
-public class Error {
+import org.springframework.stereotype.Component;
+
+@Component
+public class ErrorResponse {
     String error;
     String reason;
 
-    public Error(String reason) {
+    public ErrorResponse(String reason) {
         error = "error";
         this.reason = reason;
     }

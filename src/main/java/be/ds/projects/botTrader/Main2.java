@@ -22,7 +22,7 @@ public class Main2 {
         final OrderBookRepository orderBookRepository = ctx.getBean("orderBookRepository", OrderBookRepository.class);
         final OrderBook orderBook = BitStampInterfacer.orderBook(CurrencyPair.BTC2EUR);
         orderBookRepository.save(orderBook);
-        System.out.println(ToStringUtil.prettyPrintJson(orderBook));
+//        System.out.println(ToStringUtil.prettyPrintJson(orderBook));
 
     }
 

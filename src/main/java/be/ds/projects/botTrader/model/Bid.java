@@ -17,12 +17,10 @@ public class Bid {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderbook_id", nullable = false)
-    private OrderBook orderBook;
-
+    @Column(scale = 2)
     private Double price;
 
+    @Column(scale = 2)
     private Double amount;
 
     public Bid() {}
@@ -39,14 +37,6 @@ public class Bid {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public OrderBook getOrderBook() {
-        return orderBook;
-    }
-
-    public void setOrderBook(OrderBook orderBook) {
-        this.orderBook = orderBook;
     }
 
     public Double getPrice() {

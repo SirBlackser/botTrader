@@ -1,5 +1,7 @@
 package be.ds.projects.botTrader.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,12 +17,15 @@ public class OrderBook {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     private Long timestamp;
 
+    @NotNull
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "orderBookId")
     private List<Bid> bids;
 
+    @NotNull
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "orderBookId")
     private List<Ask> asks;

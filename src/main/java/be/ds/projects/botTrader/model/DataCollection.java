@@ -1,5 +1,7 @@
 package be.ds.projects.botTrader.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +21,20 @@ public class DataCollection {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "dataCollection")
     private List<DataPoint> dataPoints;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private CurrencyPair currencyPair;
 
+    @NotNull
     private Long startTimeStamp;
 
+    @NotNull
     private Long stopTimeStamp;
 
+    @NotNull
     private Integer readInterval;
+
+    private Boolean gracefulFinish = true;
 
     public DataCollection() {
         dataPoints = new ArrayList<>();
@@ -87,6 +95,14 @@ public class DataCollection {
 
     public void setReadInterval(Integer readInterval) {
         this.readInterval = readInterval;
+    }
+
+    public Boolean getGracefulFinish() {
+        return gracefulFinish;
+    }
+
+    public void setGracefulFinish(Boolean gracefulFinish) {
+        this.gracefulFinish = gracefulFinish;
     }
 
 }

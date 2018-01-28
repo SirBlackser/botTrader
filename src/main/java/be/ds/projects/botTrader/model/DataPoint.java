@@ -1,5 +1,7 @@
 package be.ds.projects.botTrader.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 
 /**
@@ -14,14 +16,17 @@ public class DataPoint {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tickerId")
     private Ticker ticker;
 
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orderBookId")
     private OrderBook orderBook;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "dataCollectionId", nullable = false)
     private DataCollection dataCollection;

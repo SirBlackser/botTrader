@@ -1,6 +1,7 @@
 package be.ds.projects.botTrader.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,11 +18,11 @@ public class Bid {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    // Currency price for this bid
+    @NotNull
     @Column(scale = 2)
     private Double price;
 
-    // Currency amount for this bid
+    @NotNull
     @Column(scale = 8)
     private Double amount;
 

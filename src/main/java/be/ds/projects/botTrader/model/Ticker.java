@@ -1,5 +1,7 @@
 package be.ds.projects.botTrader.model;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.*;
 
 /**
@@ -14,38 +16,38 @@ public class Ticker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    // Last price
+    @NotNull
     @Column(scale = 2)
     private Double last;
 
-    // Last 24 hours price high
+    @NotNull
     @Column(scale = 2)
     private Double high;
 
-    // Last 24 hours price low
+    @NotNull
     @Column(scale = 2)
     private Double low;
 
-    // Last 24 hours volume weighted average price
+    @NotNull
     @Column(scale = 2)
     private Double vwap;
 
-    // Last 24 hours volume
+    @NotNull
     @Column(scale = 8)
     private Double volume;
 
-    // Highest buy order
+    @NotNull
     @Column(scale = 2)
     private Double bid;
 
-    // Lowest sell order
+    @NotNull
     @Column(scale = 2)
     private Double ask;
 
-    // Unix timestamp date and time
+    @NotNull
     private Long timestamp;
 
-    // First price of the day
+    @NotNull
     @Column(scale = 2)
     private Double open;
 

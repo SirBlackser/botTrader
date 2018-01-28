@@ -12,7 +12,7 @@ import java.util.TimeZone;
 public class DateTimeUtil {
 
     public static LocalDateTime unixTimestampToLocalDateTime(final Long unixTimestamp) {
-        return LocalDateTime.ofInstant(Instant.ofEpochMilli(unixTimestamp), TimeZone.getDefault().toZoneId());
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(unixTimestamp * 100), TimeZone.getDefault().toZoneId());
     }
 
     public static Long localDateTimeToUnixTimestamp(final LocalDateTime localDateTime) {

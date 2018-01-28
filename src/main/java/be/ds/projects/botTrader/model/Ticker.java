@@ -15,66 +15,110 @@ public class Ticker {
     private Integer id;
 
     // Last price
+    @Column(scale = 2)
     private Double last;
 
     // Last 24 hours price high
+    @Column(scale = 2)
     private Double high;
 
     // Last 24 hours price low
+    @Column(scale = 2)
     private Double low;
 
     // Last 24 hours volume weighted average price
+    @Column(scale = 2)
     private Double vwap;
 
     // Last 24 hours volume
+    @Column(scale = 8)
     private Double volume;
 
     // Highest buy order
+    @Column(scale = 2)
     private Double bid;
 
     // Lowest sell order
+    @Column(scale = 2)
     private Double ask;
 
     // Unix timestamp date and time
     private Long timestamp;
 
     // First price of the day
+    @Column(scale = 2)
     private Double open;
 
     public Double getLast() {
         return last;
     }
 
+    public void setLast(Double last) {
+        this.last = last;
+    }
+
     public Double getHigh() {
         return high;
+    }
+
+    public void setHigh(Double high) {
+        this.high = high;
     }
 
     public Double getLow() {
         return low;
     }
 
+    public void setLow(Double low) {
+        this.low = low;
+    }
+
     public Double getVwap() {
         return vwap;
+    }
+
+    public void setVwap(Double vwap) {
+        this.vwap = vwap;
     }
 
     public Double getVolume() {
         return volume;
     }
 
+    public void setVolume(Double volume) {
+        this.volume = volume;
+    }
+
     public Double getBid() {
         return bid;
+    }
+
+    public void setBid(Double bid) {
+        this.bid = bid;
     }
 
     public Double getAsk() {
         return ask;
     }
 
+    public void setAsk(Double ask) {
+        this.ask = ask;
+    }
+
     public Long getTimestamp() {
         return timestamp;
     }
 
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public Double getOpen() {
         return open;
+    }
+
+    public void setOpen(Double open) {
+        this.open = open;
     }
 
 }

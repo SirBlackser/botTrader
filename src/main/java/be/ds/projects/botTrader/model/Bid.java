@@ -17,10 +17,12 @@ public class Bid {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    // Currency price for this bid
     @Column(scale = 2)
     private Double price;
 
-    @Column(scale = 2)
+    // Currency amount for this bid
+    @Column(scale = 8)
     private Double amount;
 
     public Bid() {}

@@ -1,11 +1,6 @@
 package be.ds.projects.botTrader;
 
-import be.ds.projects.botTrader.bitstamp.BitStampInterfacer;
-import be.ds.projects.botTrader.model.CurrencyPair;
-import be.ds.projects.botTrader.model.Ticker;
-import be.ds.projects.botTrader.model.TickerRepository;
 import be.ds.projects.botTrader.quartz.QuartzScheduler;
-import org.quartz.Scheduler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

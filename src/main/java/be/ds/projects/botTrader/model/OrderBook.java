@@ -2,7 +2,6 @@ package be.ds.projects.botTrader.model;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Steven de Cleene
@@ -18,12 +17,12 @@ public class OrderBook {
 
     private Long timestamp;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "orderBook")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderBookId")
     private List<Bid> bids;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "orderBook")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "orderBookId")
     private List<Ask> asks;
 
     public OrderBook() {}

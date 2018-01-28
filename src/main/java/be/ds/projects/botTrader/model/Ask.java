@@ -17,10 +17,12 @@ public class Ask {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    // Currency price for this ask
     @Column(scale = 2)
     private Double price;
 
-    @Column(scale = 2)
+    // Currency amount for this ask
+    @Column(scale = 8)
     private Double amount;
 
     public Ask() {}

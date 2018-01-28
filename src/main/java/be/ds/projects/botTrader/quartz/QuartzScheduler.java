@@ -2,11 +2,10 @@ package be.ds.projects.botTrader.quartz;
 
 import be.ds.projects.botTrader.quartz.job.ReadTickerJob;
 import org.quartz.*;
-import org.quartz.impl.StdScheduler;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import static be.ds.projects.botTrader.quartz.QuartzJobCronStrings.*;
+import static be.ds.projects.botTrader.quartz.QuartzJobCronStrings.CRON_STRING_READ_TICKER;
 
 /**
  * @author Steven de Cleene

@@ -33,9 +33,10 @@ public class DataPoint {
 
     public DataPoint() {}
 
-    public DataPoint(final Ticker ticker, final OrderBook orderBook) {
+    public DataPoint(final Ticker ticker, final OrderBook orderBook, final DataCollection dataCollection) {
         this.ticker = ticker;
         this.orderBook = orderBook;
+        this.dataCollection = dataCollection;
     }
 
     public Integer getId() {

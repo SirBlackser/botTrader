@@ -1,42 +1,39 @@
 package be.ds.projects.botTrader.quartz;
 
-import be.ds.projects.botTrader.quartz.job.ReadTickerJob;
-import org.quartz.*;
+import be.ds.projects.botTrader.model.DataCollection;
+import be.ds.projects.botTrader.quartz.setup.DataCollectionSetup;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import static be.ds.projects.botTrader.quartz.QuartzJobCronStrings.CRON_STRING_READ_TICKER;
 
 /**
  * @author Steven de Cleene
  */
 public class QuartzScheduler {
 
-    private final Scheduler scheduler;
+    private Scheduler scheduler;
 
     public QuartzScheduler(final ConfigurableApplicationContext ctx) throws Exception {
         scheduler = new StdSchedulerFactory().getScheduler();
+        scheduler.getContext().put("springCtx", ctx);
         scheduler.start();
-        scheduler.getContext().put("springCTX", ctx);
     }
 
-    public void initializeJobs() throws Exception {
-        final JobDetail readTickerJob = buildJob(ReadTickerJob.class);
-        final Trigger readTickerTrigger = buildTrigger(ReadTickerJob.class, CRON_STRING_READ_TICKER);
-        scheduler.scheduleJob(readTickerJob, readTickerTrigger);
+    public Boolean hasRunningJobs() throws Exception {
+        return scheduler.getJobGroupNames().size() > 0;
     }
 
-    private JobDetail buildJob(final Class clazz) {
-        return JobBuilder.newJob(clazz)
-                .withIdentity(clazz.getName(), "trader")
-                .build();
+    public void shutDown() throws Exception {
+        scheduler.shutdown();
     }
 
-    private Trigger buildTrigger(final Class clazz, final String cronString) {
-        return TriggerBuilder.newTrigger()
-                .withIdentity(clazz.getName() + "_trigger", "trader")
-                .withSchedule(CronScheduleBuilder.cronSchedule(cronString))
-                .build();
+    public void addDataCollectionJob(final DataCollection dataCollection) throws SchedulerException {
+        final String jobIdentifier = "dataCollection_" + dataCollection.getCurrencyPair().currencyPair() + "_" +
+                dataCollection.getReadInterval() + "_" + dataCollection.getStopTimeStamp();
+        final DataCollectionSetup dataCollectionSetup = new DataCollectionSetup(jobIdentifier, "dataCollection");
+        scheduler.getContext().put(jobIdentifier, dataCollection);
+        scheduler.scheduleJob(dataCollectionSetup.getJobDetail(), dataCollectionSetup.getTrigger(dataCollection));
     }
 
 }

@@ -1,43 +1,35 @@
 package be.ds.projects.botTrader.quartz.job;
 
+import be.ds.projects.botTrader.bitstamp.BitStampInterfacer;
 import be.ds.projects.botTrader.model.DataCollection;
-import org.quartz.InterruptableJob;
+import be.ds.projects.botTrader.model.DataPoint;
+import be.ds.projects.botTrader.model.OrderBook;
+import be.ds.projects.botTrader.model.Ticker;
+import be.ds.projects.botTrader.model.repository.DataPointRepository;
+import org.quartz.Job;
 import org.quartz.JobExecutionContext;
-import org.quartz.JobKey;
-import org.quartz.SchedulerException;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * @author Steven de Cleene
  */
-public class DataCollectionJob implements InterruptableJob {
-
-    private String jobName;
-
-    private String jobGroup;
+public class DataCollectionJob implements Job {
 
     @Override
     public void execute(final JobExecutionContext jobExecutionContext) {
         try {
-            final DataCollection dataCollection = (DataCollection) jobExecutionContext.getScheduler().getContext().get("DataCollection");
-            System.out.println(dataCollection.getCurrencyPair());
-            System.out.println(dataCollection.getStopTimeStamp());
-            jobExecutionContext.getScheduler().interrupt(new JobKey(jobName, jobGroup));
-        } catch (SchedulerException e) {
+            final String dataCollectionIdentifier = jobExecutionContext.getJobDetail().getKey().getName().substring(2);
+            final DataCollection dataCollection = (DataCollection) jobExecutionContext.getScheduler().getContext().get(dataCollectionIdentifier);
+            final ConfigurableApplicationContext ctx = (ConfigurableApplicationContext) jobExecutionContext.getScheduler().getContext().get("springCtx");
+            final Ticker ticker = BitStampInterfacer.ticker(dataCollection.getCurrencyPair());
+            final OrderBook orderBook = BitStampInterfacer.orderBook(dataCollection.getCurrencyPair());
+            final DataPoint dataPoint = new DataPoint(ticker, orderBook, dataCollection);
+            final DataPointRepository dataPointRepository = ctx.getBean("dataPointRepository", DataPointRepository.class);
+            dataPointRepository.save(dataPoint);
+            System.out.println("PERSISTED!!!!!");
+        } catch (Exception e) {
             // ignore
         }
-    }
-
-    @Override
-    public void interrupt() {
-        Thread.currentThread().interrupt();
-    }
-
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
-    }
-
-    public void setJobGroup(String jobGroup) {
-        this.jobGroup = jobGroup;
     }
 
 }

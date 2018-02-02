@@ -5,11 +5,10 @@ import be.ds.projects.botTrader.model.Ticker;
 import be.ds.projects.botTrader.testbench.exception.InvalidTickerTimestampException;
 import be.ds.projects.botTrader.testbench.exception.TestBenchException;
 import be.ds.projects.botTrader.testbench.model.Budget;
-
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Optional;
 
 import static be.ds.projects.botTrader.testbench.util.DataCollectionUtil.getTickerFromDataCollectionBasedOnTimestamp;
 import static be.ds.projects.botTrader.testbench.util.LogUtil.*;

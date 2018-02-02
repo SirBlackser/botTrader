@@ -29,6 +29,23 @@
         <quartz_version>2.2.1</quartz_version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>BAC Repository</name>
+			<url>http://nexus-dev.brusselsairport.be/repository/maven-public/</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

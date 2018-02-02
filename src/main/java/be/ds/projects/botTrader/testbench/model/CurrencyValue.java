@@ -33,4 +33,8 @@ public class CurrencyValue {
         this.amount = amount;
     }
 
+    public void addAmount(final double amount) {
+        this.amount += amount;
+    }
+
 }

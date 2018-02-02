@@ -34,4 +34,12 @@ public class Budget {
         this.cryptoCurrency = cryptoCurrency;
     }
 
+    public double getFinalTradeValue(final double lastBuyPrice) {
+        double tradeAmount = tradeCurrency.getAmount();
+        if (lastBuyPrice != 0.0) {
+            tradeAmount += cryptoCurrency.getAmount() * lastBuyPrice;
+        }
+        return tradeAmount;
+    }
+
 }

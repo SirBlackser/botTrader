@@ -1,12 +1,14 @@
 package be.ds.projects.botTrader.testbench;
 
+import be.ds.projects.botTrader.testbench.exception.TestBenchException;
+
 /**
  * @author Steven de Cleene
  */
 public interface Command {
 
-    boolean buyMax();
+    void buy(final Long tickerTimestamp) throws TestBenchException;
 
-    boolean sellMax();
+    void sell(final Long tickerTimestamp) throws TestBenchException;
 
 }

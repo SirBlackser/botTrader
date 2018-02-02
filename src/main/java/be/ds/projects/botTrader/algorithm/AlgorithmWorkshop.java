@@ -1,4 +1,4 @@
-package be.ds.projects.botTrader.workshop;
+package be.ds.projects.botTrader.algorithm;
 
 import be.ds.projects.botTrader.model.Ask;
 import be.ds.projects.botTrader.model.Ticker;

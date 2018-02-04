@@ -1,7 +1,6 @@
 package be.ds.projects.botTrader.quartz;
 
 import be.ds.projects.botTrader.model.DataCollection;
-import be.ds.projects.botTrader.quartz.setup.DataCollectionSetup;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;

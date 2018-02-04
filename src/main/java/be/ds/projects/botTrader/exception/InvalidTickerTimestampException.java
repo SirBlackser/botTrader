@@ -1,4 +1,4 @@
-package be.ds.projects.botTrader.testbench.exception;
+package be.ds.projects.botTrader.exception;
 
 /**
  * @author Steven de Cleene

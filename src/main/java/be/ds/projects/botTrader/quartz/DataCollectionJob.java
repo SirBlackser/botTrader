@@ -1,4 +1,4 @@
-package be.ds.projects.botTrader.quartz.job;
+package be.ds.projects.botTrader.quartz;
 
 import be.ds.projects.botTrader.bitstamp.BitStampInterfacer;
 import be.ds.projects.botTrader.model.DataCollection;

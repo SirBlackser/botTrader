@@ -1,7 +1,6 @@
-package be.ds.projects.botTrader.quartz.setup;
+package be.ds.projects.botTrader.quartz;
 
 import be.ds.projects.botTrader.model.DataCollection;
-import be.ds.projects.botTrader.quartz.job.DataCollectionJob;
 import org.quartz.*;
 
 import static be.ds.projects.botTrader.util.DateTimeUtil.unixTimestampToDate;

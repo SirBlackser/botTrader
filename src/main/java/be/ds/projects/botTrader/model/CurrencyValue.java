@@ -1,4 +1,4 @@
-package be.ds.projects.botTrader.testbench.model;
+package be.ds.projects.botTrader.model;
 
 import be.ds.projects.botTrader.model.Currency;
 

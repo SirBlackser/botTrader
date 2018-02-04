@@ -1,6 +1,6 @@
 package be.ds.projects.botTrader.testbench;
 
-import be.ds.projects.botTrader.testbench.exception.TestBenchException;
+import be.ds.projects.botTrader.exception.TestBenchException;
 
 /**
  * @author Steven de Cleene

@@ -1,10 +1,10 @@
-package be.ds.projects.botTrader.testbench.model;
+package be.ds.projects.botTrader.model;
 
 import be.ds.projects.botTrader.model.Currency;
 import be.ds.projects.botTrader.model.CurrencyPair;
 
-import static be.ds.projects.botTrader.testbench.util.CurrencyUtil.getCryptoCurrencyFromCurrencyPair;
-import static be.ds.projects.botTrader.testbench.util.CurrencyUtil.getTradeCurrencyFromCurrencyPair;
+import static be.ds.projects.botTrader.util.CurrencyUtil.getCryptoCurrencyFromCurrencyPair;
+import static be.ds.projects.botTrader.util.CurrencyUtil.getTradeCurrencyFromCurrencyPair;
 
 /**
  * @author Steven de Cleene

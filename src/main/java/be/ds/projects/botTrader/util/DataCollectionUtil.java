@@ -1,4 +1,4 @@
-package be.ds.projects.botTrader.testbench.util;
+package be.ds.projects.botTrader.util;
 
 import be.ds.projects.botTrader.model.DataCollection;
 import be.ds.projects.botTrader.model.DataPoint;

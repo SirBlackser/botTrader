@@ -26,7 +26,6 @@ public class DataCollectionJob implements Job {
             final DataPoint dataPoint = new DataPoint(ticker, orderBook, dataCollection);
             final DataPointRepository dataPointRepository = ctx.getBean("dataPointRepository", DataPointRepository.class);
             dataPointRepository.save(dataPoint);
-            System.out.println("PERSISTED!!!!!");
         } catch (Exception e) {
             // ignore
         }

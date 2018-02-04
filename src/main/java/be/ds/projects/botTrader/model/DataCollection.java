@@ -18,7 +18,7 @@ public class DataCollection {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "dataCollection")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "dataCollection")
     private List<DataPoint> dataPoints;
 
     @NotNull

@@ -14,6 +14,12 @@ import java.util.List;
 @Repository
 public interface AskRepository extends JpaRepository<Ask, Long> {
 
+    /**
+     * Gets all Asks for a specific OrderBook. Implemented for lazy loading (see JpaInitializeUtil).
+     *
+     * @param orderBookId OrderBook ID to get the Asks from
+     * @return List of Asks linked to the specified OrderBook
+     */
     @Query("SELECT a FROM Ask a WHERE order_book_id = :ob_id")
     List<Ask> getAsksFromOrderbookId(@Param("ob_id") final Integer orderBookId);
 

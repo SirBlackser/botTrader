@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
+ * Utility class thet converts Date times and formats.
+ *
  * @author Steven de Cleene
  */
 @SuppressWarnings("unused")

@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DataCollectionRepository extends JpaRepository<DataCollection, Long> {
 
+    /**
+     * Gets a DataCollection based on an ID.
+     *
+     * @param id ID to get a DataCollection from
+     * @return DataCollection with the specified ID.
+     */
     DataCollection findDataCollectionById(final Integer id);
 
 }

@@ -8,6 +8,8 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
+ * Implementation of a custom Quartz scheduler to run our defined job(s).
+ *
  * @author Steven de Cleene
  */
 public class QuartzScheduler {

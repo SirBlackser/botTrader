@@ -14,6 +14,12 @@ import java.util.List;
 @Repository
 public interface DataPointRepository extends JpaRepository<DataPoint, Long> {
 
+    /**
+     * Gets all DataPoints for a specific DataCollection. Implemented for lazy loading (see JpaInitializeUtil).
+     *
+     * @param dataCollectionId DataCollection ID to get the DataPoints from
+     * @return List of DataPoints linked to the specified DataCollection
+     */
     @Query("SELECT dp FROM DataPoint dp WHERE data_collection_id = :dc_id")
     List<DataPoint> getDataPointsForDataCollectionId(@Param("dc_id") final Integer dataCollectionId);
 

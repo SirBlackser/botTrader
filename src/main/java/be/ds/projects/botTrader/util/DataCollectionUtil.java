@@ -7,6 +7,10 @@ import be.ds.projects.botTrader.model.Ticker;
 import java.util.Optional;
 
 /**
+ * Utility class that searching for data in a DataCollection
+ *
+ * TODO: getTickerFromDataCollectionBasedOnTimestamp needs to be optimized, multi-day simulations may have 4k+ datapoints
+ *
  * @author Steven de Cleene
  */
 public class DataCollectionUtil {

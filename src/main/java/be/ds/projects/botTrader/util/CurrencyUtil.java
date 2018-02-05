@@ -4,6 +4,8 @@ import be.ds.projects.botTrader.model.CurrencyPair;
 import be.ds.projects.botTrader.testbench.model.Currency;
 
 /**
+ * Utility class that gets the trade/crypto Currency from a CurrencyPair.
+ *
  * @author Steven de Cleene
  */
 public class CurrencyUtil {

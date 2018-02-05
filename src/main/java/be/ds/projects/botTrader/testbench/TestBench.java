@@ -14,13 +14,19 @@ import static be.ds.projects.botTrader.util.DataCollectionUtil.getTickerFromData
 import static be.ds.projects.botTrader.util.LogUtil.*;
 
 /**
+ * Class that does the management of the commands and the budget. This way algorithms don't need to worry about
+ * buy/sell commands and budget tracking.
+ *
+ * Implements all methods in the Command interface.
+ *
+ * TODO: Add a "verifier" class that verifies buy/sell actions (no cheating allowed)
+ *
  * @author Steven de Cleene
  */
 public abstract class TestBench implements Command {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("testbench");
 
-    //TODO: Move to seperate Verifier class (for when we do partial buys/sells)
     private DataCollection dataCollection;
 
     private Budget budget;

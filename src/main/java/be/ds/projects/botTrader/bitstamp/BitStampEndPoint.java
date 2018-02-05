@@ -1,6 +1,8 @@
 package be.ds.projects.botTrader.bitstamp;
 
 /**
+ * All the endpoints referenced in the BitStampInterfacer.
+ *
  * @author Steven de Cleene
  */
 @SuppressWarnings("unused")

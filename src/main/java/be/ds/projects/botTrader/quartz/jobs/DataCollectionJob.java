@@ -11,6 +11,12 @@ import org.quartz.JobExecutionContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
+ * Quartz job for the collection of data for a specific currency over a specified period of time.
+ * For Job configuration / setup, see DataCollectionSetup.
+ *
+ * TODO: If there's a major failure in the job execution update the data collection to have gracefulFinish = false.
+ * TODO: Decide if a single incapability to reach the Bitstamp API qualifies as a failure, or we wait until 3 subsequent misses.
+ *
  * @author Steven de Cleene
  */
 public class DataCollectionJob implements Job {

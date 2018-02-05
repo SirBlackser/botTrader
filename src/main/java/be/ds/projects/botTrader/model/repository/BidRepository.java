@@ -14,6 +14,12 @@ import java.util.List;
 @Repository
 public interface BidRepository extends JpaRepository<Bid, Long> {
 
+    /**
+     * Gets all Bids for a specific OrderBook. Implemented for lazy loading (see JpaInitializeUtil).
+     *
+     * @param orderBookId OrderBook ID to get the Bids from
+     * @return List of Bids linked to the specified OrderBook
+     */
     @Query("SELECT b FROM Bid b WHERE order_book_id = :ob_id")
     List<Bid> getBidsFromOrderbookId(@Param("ob_id") final Integer orderBookId);
 

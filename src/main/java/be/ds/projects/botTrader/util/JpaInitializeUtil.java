@@ -8,9 +8,13 @@ import be.ds.projects.botTrader.model.repository.DataPointRepository;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
+ * Utility class that handles the initialization of lazy loaded objects.
+ *
+ * TODO: Look for a better way to do this.
+ *
  * @author Steven de Cleene
  */
-public class InitializeUtil {
+public class JpaInitializeUtil {
 
     public static DataCollection initialize(final ConfigurableApplicationContext ctx, final DataCollection dataCollection) {
         dataCollection.setDataPoints(ctx.getBean("dataPointRepository", DataPointRepository.class).getDataPointsForDataCollectionId(dataCollection.getId()));

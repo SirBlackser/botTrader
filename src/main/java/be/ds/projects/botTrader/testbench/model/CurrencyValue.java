@@ -1,6 +1,8 @@
 package be.ds.projects.botTrader.testbench.model;
 
 /**
+ * POJO linked to the Budget class that keeps track of the current balance of the specified currency.
+ *
  * @author Steven de Cleene
  */
 @SuppressWarnings("unused")

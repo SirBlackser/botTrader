@@ -10,6 +10,8 @@ import static be.ds.projects.botTrader.bitstamp.BitStampEndPoint.ORDER_BOOK;
 import static be.ds.projects.botTrader.bitstamp.BitStampEndPoint.TICKER;
 
 /**
+ * Class that handles the communication with the Bitstamp API.
+ *
  * @author Steven de Cleene
  */
 public class BitStampInterfacer implements BitStampParameterKeys {

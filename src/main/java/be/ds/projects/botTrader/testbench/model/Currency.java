@@ -1,6 +1,8 @@
 package be.ds.projects.botTrader.testbench.model;
 
 /**
+ * Simple enum describing possible currencies.
+ *
  * @author Steven de Cleene
  */
 @SuppressWarnings("unused")

@@ -6,6 +6,10 @@ import static be.ds.projects.botTrader.util.CurrencyUtil.getCryptoCurrencyFromCu
 import static be.ds.projects.botTrader.util.CurrencyUtil.getTradeCurrencyFromCurrencyPair;
 
 /**
+ * POJO containing data about two currencies linked to one another.
+ *
+ * e.g. simulation BTCEUR Currency will link them seperately through this class in the TestBench
+ *
  * @author Steven de Cleene
  */
 @SuppressWarnings("unused")

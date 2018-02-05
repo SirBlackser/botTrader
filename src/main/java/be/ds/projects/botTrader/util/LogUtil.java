@@ -4,6 +4,8 @@ import be.ds.projects.botTrader.testbench.model.Currency;
 import be.ds.projects.botTrader.testbench.model.CurrencyValue;
 
 /**
+ * Utility class that formats a proper trader log line.
+ *
  * @author Steven de Cleene
  */
 public class LogUtil {

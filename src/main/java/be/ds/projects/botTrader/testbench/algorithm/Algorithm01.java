@@ -1,4 +1,4 @@
-package be.ds.projects.botTrader.algorithm;
+package be.ds.projects.botTrader.testbench.algorithm;
 
 import be.ds.projects.botTrader.model.Ask;
 import be.ds.projects.botTrader.model.Ticker;
@@ -8,7 +8,7 @@ import java.util.LinkedList;
 /**
  * @author Dries Blontrock
  */
-public class AlgorithmWorkshop {
+public class Algorithm01 {
 
     private long moveingAverage;
     private double moveingAverageNumber;
@@ -19,7 +19,7 @@ public class AlgorithmWorkshop {
     private LinkedList<Ask> buys;
     private double prevMoveingAverage;
 
-    public AlgorithmWorkshop(double moveingAverageNumber, double percentageProfit, double sellDropOff) {
+    public Algorithm01(double moveingAverageNumber, double percentageProfit, double sellDropOff) {
         this.moveingAverageNumber = moveingAverageNumber;
         this.percentageProfit = 1.05 + (percentageProfit/100);
         this.sellDropOff = sellDropOff;

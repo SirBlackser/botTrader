@@ -1,7 +1,7 @@
 package be.ds.projects.botTrader.util;
 
-import be.ds.projects.botTrader.model.Currency;
-import be.ds.projects.botTrader.model.CurrencyValue;
+import be.ds.projects.botTrader.testbench.model.Currency;
+import be.ds.projects.botTrader.testbench.model.CurrencyValue;
 
 /**
  * @author Steven de Cleene

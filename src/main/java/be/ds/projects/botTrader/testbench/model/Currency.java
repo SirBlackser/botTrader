@@ -1,4 +1,4 @@
-package be.ds.projects.botTrader.model;
+package be.ds.projects.botTrader.testbench.model;
 
 /**
  * @author Steven de Cleene

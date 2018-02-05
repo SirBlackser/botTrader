@@ -2,9 +2,9 @@ package be.ds.projects.botTrader.testbench;
 
 import be.ds.projects.botTrader.model.DataCollection;
 import be.ds.projects.botTrader.model.Ticker;
-import be.ds.projects.botTrader.exception.InvalidTickerTimestampException;
-import be.ds.projects.botTrader.exception.TestBenchException;
-import be.ds.projects.botTrader.model.Budget;
+import be.ds.projects.botTrader.testbench.exception.InvalidTickerTimestampException;
+import be.ds.projects.botTrader.testbench.exception.TestBenchException;
+import be.ds.projects.botTrader.testbench.model.Budget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

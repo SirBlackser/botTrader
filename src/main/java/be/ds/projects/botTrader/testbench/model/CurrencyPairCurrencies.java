@@ -1,6 +1,5 @@
-package be.ds.projects.botTrader.model;
+package be.ds.projects.botTrader.testbench.model;
 
-import be.ds.projects.botTrader.model.Currency;
 import be.ds.projects.botTrader.model.CurrencyPair;
 
 import static be.ds.projects.botTrader.util.CurrencyUtil.getCryptoCurrencyFromCurrencyPair;

@@ -1,4 +1,6 @@
-package be.ds.projects.botTrader.model;
+package be.ds.projects.botTrader.testbench.model;
+
+import be.ds.projects.botTrader.model.CurrencyPair;
 
 /**
  * @author Steven de Cleene

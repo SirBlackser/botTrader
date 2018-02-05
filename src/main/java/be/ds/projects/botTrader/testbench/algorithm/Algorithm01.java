@@ -6,6 +6,8 @@ import be.ds.projects.botTrader.model.Ticker;
 import java.util.LinkedList;
 
 /**
+ * TODO: implement TestBench to outsource buy/sell/budget management
+ *
  * @author Dries Blontrock
  */
 public class Algorithm01 {
@@ -42,11 +44,8 @@ public class Algorithm01 {
         moveingAverage = sum / values.size();
 
         if(buys.size() > 0 && buys.getLast().getPrice()*percentageProfit < ticker.getLast() && prevMoveingAverage > moveingAverage) {
-            // TODO sell
         } else if(moveingAverage > prevMoveingAverage) {
-            // TODO buy
         } else if((buys.getLast().getPrice()*(1-(sellDropOff/100))) < moveingAverage) {
-            // TODO sell
         }
     }
 

@@ -15,7 +15,6 @@ import java.util.Optional;
  */
 public class DataCollectionUtil {
 
-    //TODO: Needs to be optimized once it goes into verifier
     public static Optional<Ticker> getTickerFromDataCollectionBasedOnTimestamp(final DataCollection dataCollection, final Long tickerTimestmap) {
         for (DataPoint dataPoint : dataCollection.getDataPoints()) {
             if (tickerTimestmap.equals(dataPoint.getTicker().getTimestamp())) {

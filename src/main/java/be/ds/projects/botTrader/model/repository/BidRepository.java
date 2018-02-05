@@ -1,6 +1,6 @@
 package be.ds.projects.botTrader.model.repository;
 
-import be.ds.projects.botTrader.model.DataPoint;
+import be.ds.projects.botTrader.model.Bid;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,9 +12,9 @@ import java.util.List;
  * @author Steven de Cleene
  */
 @Repository
-public interface DataPointRepository extends JpaRepository<DataPoint, Long> {
+public interface BidRepository extends JpaRepository<Bid, Long> {
 
-    @Query("SELECT dp FROM DataPoint dp WHERE data_collection_id = :dc_id")
-    List<DataPoint> getDataPointsForDataCollectionId(@Param("dc_id") final Integer dataCollectionId);
+    @Query("SELECT b FROM Bid b WHERE order_book_id = :ob_id")
+    List<Bid> getBidsFromOrderbookId(@Param("ob_id") final Integer orderBookId);
 
 }

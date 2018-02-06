@@ -10,8 +10,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * Utility class that handles the initialization of lazy loaded objects.
  *
- * TODO: Look for a better way to do this.
- *
  * @author Steven de Cleene
  */
 public class JpaInitializeUtil {

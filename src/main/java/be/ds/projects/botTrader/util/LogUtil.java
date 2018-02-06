@@ -11,15 +11,15 @@ import be.ds.projects.botTrader.testbench.model.CurrencyValue;
 public class LogUtil {
 
     public static String getBuyLogMessage(final Long tickerTimestamp, final CurrencyValue tradeCurrency, final CurrencyValue cryptoCurrency,
-                                          final double transferAmount) {
-        return "[" + tickerTimestamp + "] BUY - " + tradeCurrency.getAmount() + " " + tradeCurrency.getCurrency().currency() +
-                " -> " + transferAmount + " " + cryptoCurrency.getCurrency().currency();
+                                          final double tradeAmount, final double cryptoAmount) {
+        return "[" + tickerTimestamp + "] BUY - " + tradeAmount + " " + tradeCurrency.getCurrency().currency() +
+                " -> " + cryptoAmount + " " + cryptoCurrency.getCurrency().currency();
     }
 
     public static String getSellLogMessage(final Long tickerTimestamp, final CurrencyValue tradeCurrency, final CurrencyValue cryptoCurrency,
-                                           final double transferAmount) {
-        return "[" + tickerTimestamp + "] SELL - " + cryptoCurrency.getAmount() + " " + cryptoCurrency.getCurrency().currency() +
-                " -> " + transferAmount + " " + tradeCurrency.getCurrency().currency();
+                                           final double cryptoAmount, final double tradeAmount) {
+        return "[" + tickerTimestamp + "] SELL - " + cryptoAmount + " " + cryptoCurrency.getCurrency().currency() +
+                " -> " + tradeAmount + " " + tradeCurrency.getCurrency().currency();
     }
 
     public static String getFinalTradeValueLogMessage(final double finalTradeValue, final Currency tradeCurrency) {

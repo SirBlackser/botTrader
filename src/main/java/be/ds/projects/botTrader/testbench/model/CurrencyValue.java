@@ -33,8 +33,12 @@ public class CurrencyValue {
         this.amount = amount;
     }
 
-    public void addAmount(final double amount) {
+    public void increaseAmount(final double amount) {
         this.amount += amount;
+    }
+
+    public void decreaseAmount(final double amount) {
+        this.amount -= amount;
     }
 
 }

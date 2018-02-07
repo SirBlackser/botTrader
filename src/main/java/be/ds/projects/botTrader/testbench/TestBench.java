@@ -4,15 +4,13 @@ import be.ds.projects.botTrader.model.DataCollection;
 import be.ds.projects.botTrader.model.Ticker;
 import be.ds.projects.botTrader.testbench.exception.InsufficientCryptoBudgetException;
 import be.ds.projects.botTrader.testbench.exception.InsufficientTradeBudgetException;
-import be.ds.projects.botTrader.testbench.exception.InvalidTickerTimestampException;
 import be.ds.projects.botTrader.testbench.exception.TestBenchException;
 import be.ds.projects.botTrader.testbench.model.Budget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Optional;
-
-import static be.ds.projects.botTrader.util.DataCollectionUtil.getTickerFromDataCollectionBasedOnTimestamp;
+import static be.ds.projects.botTrader.testbench.CommandVerifier.canBuy;
+import static be.ds.projects.botTrader.testbench.CommandVerifier.canSell;
 import static be.ds.projects.botTrader.util.LogUtil.getBuyLogMessage;
 import static be.ds.projects.botTrader.util.LogUtil.getSellLogMessage;
 
@@ -22,31 +20,26 @@ import static be.ds.projects.botTrader.util.LogUtil.getSellLogMessage;
  *
  * Implements all methods in the Command interface.
  *
- * TODO: Add a "verifier" class that verifies buy/sell actions (no cheating allowed)
- *
  * @author Steven de Cleene
  */
 public abstract class TestBench implements Command {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("testbench");
 
-    private DataCollection dataCollection;
+    private DataCollectionHandler dataCollectionHandler;
 
     private Budget budget;
 
     public TestBench(final DataCollection dataCollection, final double initialBudget) {
-        this.dataCollection = dataCollection;
+        this.dataCollectionHandler = new DataCollectionHandler(dataCollection);
         this.budget = new Budget(dataCollection.getCurrencyPair(), initialBudget);
     }
 
     @Override
     public void buy(final Long tickerTimestamp) throws TestBenchException {
-        final Optional<Ticker> ticker = getTickerFromDataCollectionBasedOnTimestamp(dataCollection, tickerTimestamp);
-        if (!ticker.isPresent()) {
-            throw new InvalidTickerTimestampException();
-        }
+        final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
-        final double cryptoTransferAmount = budget.getTradeCurrency().getAmount() / ticker.get().getLast();
+        final double cryptoTransferAmount = budget.getTradeCurrency().getAmount() / ticker.getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().setAmount(0.0);
 
@@ -55,16 +48,13 @@ public abstract class TestBench implements Command {
 
     @Override
     public void buy(final Long tickerTimestamp, final Double tradeCurrencyAmount) throws TestBenchException {
-        if (tradeCurrencyAmount > budget.getTradeCurrency().getAmount()) {
+        if (!canBuy(budget, tradeCurrencyAmount)) {
             throw new InsufficientTradeBudgetException();
         }
 
-        final Optional<Ticker> ticker = getTickerFromDataCollectionBasedOnTimestamp(dataCollection, tickerTimestamp);
-        if (!ticker.isPresent()) {
-            throw new InvalidTickerTimestampException();
-        }
+        final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
-        final double cryptoTransferAmount = tradeCurrencyAmount / ticker.get().getLast();
+        final double cryptoTransferAmount = tradeCurrencyAmount / ticker.getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().decreaseAmount(tradeCurrencyAmount);
 
@@ -74,13 +64,9 @@ public abstract class TestBench implements Command {
     @Override
     public void buy(final Long tickerTimestamp, final Float percentageAmount) throws TestBenchException {
         final Double tradeCurrencyAmount = budget.getTradeCurrency().getAmount() * percentageAmount;
+        final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
-        final Optional<Ticker> ticker = getTickerFromDataCollectionBasedOnTimestamp(dataCollection, tickerTimestamp);
-        if (!ticker.isPresent()) {
-            throw new InvalidTickerTimestampException();
-        }
-
-        final double cryptoTransferAmount = tradeCurrencyAmount / ticker.get().getLast();
+        final double cryptoTransferAmount = tradeCurrencyAmount / ticker.getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().decreaseAmount(tradeCurrencyAmount);
 
@@ -89,12 +75,9 @@ public abstract class TestBench implements Command {
 
     @Override
     public void sell(final Long tickerTimestamp) throws TestBenchException {
-        final Optional<Ticker> ticker = getTickerFromDataCollectionBasedOnTimestamp(dataCollection, tickerTimestamp);
-        if (!ticker.isPresent()) {
-            throw new InvalidTickerTimestampException();
-        }
+        final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
-        final double tradeTransferAmount = budget.getCryptoCurrency().getAmount() * ticker.get().getLast();
+        final double tradeTransferAmount = budget.getCryptoCurrency().getAmount() * ticker.getLast();
         budget.getTradeCurrency().increaseAmount(tradeTransferAmount);
         budget.getCryptoCurrency().setAmount(0.0);
 
@@ -103,16 +86,13 @@ public abstract class TestBench implements Command {
 
     @Override
     public void sell(final Long tickerTimestamp, final Double cryptoCurrencyAmount) throws TestBenchException {
-        if (cryptoCurrencyAmount > budget.getCryptoCurrency().getAmount()) {
+        if (!canSell(budget, cryptoCurrencyAmount)) {
             throw new InsufficientCryptoBudgetException();
         }
 
-        final Optional<Ticker> ticker = getTickerFromDataCollectionBasedOnTimestamp(dataCollection, tickerTimestamp);
-        if (!ticker.isPresent()) {
-            throw new InvalidTickerTimestampException();
-        }
+        final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
-        final double tradeTransferAmount = cryptoCurrencyAmount * ticker.get().getLast();
+        final double tradeTransferAmount = cryptoCurrencyAmount * ticker.getLast();
         budget.getTradeCurrency().increaseAmount(cryptoCurrencyAmount);
         budget.getCryptoCurrency().decreaseAmount(cryptoCurrencyAmount);
 
@@ -122,13 +102,9 @@ public abstract class TestBench implements Command {
     @Override
     public void sell(final Long tickerTimestamp, final Float percentageAmount) throws TestBenchException {
         final Double cryptoCurrencyAmount = budget.getCryptoCurrency().getAmount() * percentageAmount;
+        final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
-        final Optional<Ticker> ticker = getTickerFromDataCollectionBasedOnTimestamp(dataCollection, tickerTimestamp);
-        if (!ticker.isPresent()) {
-            throw new InvalidTickerTimestampException();
-        }
-
-        final double tradeTransferAmount = cryptoCurrencyAmount * ticker.get().getLast();
+        final double tradeTransferAmount = cryptoCurrencyAmount * ticker.getLast();
         budget.getTradeCurrency().increaseAmount(cryptoCurrencyAmount);
         budget.getCryptoCurrency().decreaseAmount(cryptoCurrencyAmount);
 

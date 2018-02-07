@@ -36,23 +36,4 @@ public class Budget {
         this.cryptoCurrency = cryptoCurrency;
     }
 
-    /**
-     * Gets the final result of the simulation.
-     *
-     * When there is money invested in crypto at the end of the simulation, add the price of purchase to the trade
-     * balance.
-     *
-     * TODO: This does not account for the possibility to have purchased crypto at different times.
-     *
-     * @param lastBuyPrice Purchase price of the crypto.
-     * @return Value describing final trade value after the simulation
-     */
-    public double getFinalTradeValue(final double lastBuyPrice) {
-        double tradeAmount = tradeCurrency.getAmount();
-        if (lastBuyPrice != 0.0) {
-            tradeAmount += cryptoCurrency.getAmount() * lastBuyPrice;
-        }
-        return tradeAmount;
-    }
-
 }

@@ -22,8 +22,4 @@ public class LogUtil {
                 " -> " + tradeAmount + " " + tradeCurrency.getCurrency().currency();
     }
 
-    public static String getFinalTradeValueLogMessage(final double finalTradeValue, final Currency tradeCurrency) {
-        return "FINAL - " + finalTradeValue + " " + tradeCurrency.currency();
-    }
-
 }

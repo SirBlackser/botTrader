@@ -13,7 +13,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Optional;
 
 import static be.ds.projects.botTrader.util.DataCollectionUtil.getTickerFromDataCollectionBasedOnTimestamp;
-import static be.ds.projects.botTrader.util.LogUtil.*;
+import static be.ds.projects.botTrader.util.LogUtil.getBuyLogMessage;
+import static be.ds.projects.botTrader.util.LogUtil.getSellLogMessage;
 
 /**
  * Class that does the management of the commands and the budget. This way algorithms don't need to worry about
@@ -33,8 +34,6 @@ public abstract class TestBench implements Command {
 
     private Budget budget;
 
-    private double lastBuyPrice = 0.0;
-
     public TestBench(final DataCollection dataCollection, final double initialBudget) {
         this.dataCollection = dataCollection;
         this.budget = new Budget(dataCollection.getCurrencyPair(), initialBudget);
@@ -47,7 +46,6 @@ public abstract class TestBench implements Command {
             throw new InvalidTickerTimestampException();
         }
 
-        lastBuyPrice = ticker.get().getLast();
         final double cryptoTransferAmount = budget.getTradeCurrency().getAmount() / ticker.get().getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().setAmount(0.0);
@@ -66,7 +64,6 @@ public abstract class TestBench implements Command {
             throw new InvalidTickerTimestampException();
         }
 
-        lastBuyPrice = ticker.get().getLast();
         final double cryptoTransferAmount = tradeCurrencyAmount / ticker.get().getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().decreaseAmount(tradeCurrencyAmount);
@@ -83,7 +80,6 @@ public abstract class TestBench implements Command {
             throw new InvalidTickerTimestampException();
         }
 
-        lastBuyPrice = ticker.get().getLast();
         final double cryptoTransferAmount = tradeCurrencyAmount / ticker.get().getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().decreaseAmount(tradeCurrencyAmount);
@@ -137,12 +133,6 @@ public abstract class TestBench implements Command {
         budget.getCryptoCurrency().decreaseAmount(cryptoCurrencyAmount);
 
         LOGGER.info(getSellLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), cryptoCurrencyAmount, tradeTransferAmount));
-    }
-
-    public double getFinalTradeValue() {
-        final double finalTradeValue = budget.getFinalTradeValue(lastBuyPrice);
-        LOGGER.info(getFinalTradeValueLogMessage(finalTradeValue, budget.getTradeCurrency().getCurrency()));
-        return finalTradeValue;
     }
 
 }

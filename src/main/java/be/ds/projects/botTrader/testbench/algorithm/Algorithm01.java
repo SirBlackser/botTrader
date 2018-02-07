@@ -6,8 +6,6 @@ import be.ds.projects.botTrader.model.Ticker;
 import java.util.LinkedList;
 
 /**
- * TODO: implement TestBench to outsource buy/sell/budget management
- *
  * @author Dries Blontrock
  */
 public class Algorithm01 {

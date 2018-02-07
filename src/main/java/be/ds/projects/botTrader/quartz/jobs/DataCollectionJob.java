@@ -45,6 +45,7 @@ public class DataCollectionJob implements Job {
             System.exit(-1);
         } catch (Exception e) {
             failureCount++;
+            LOGGER.warn("Failed to reach the Bitstamp API, strike " + failureCount + "/" + CONSECUTIVE_FAILURE_THRESHOLD);
             if (failureCount == CONSECUTIVE_FAILURE_THRESHOLD) {
                 nonGracefulExit(jobExecutionContext);
             }
@@ -54,8 +55,6 @@ public class DataCollectionJob implements Job {
     /**
      * Method that gets called when there's a problem to connect with BitStamp.
      * After 3 consecutive failures set the DataCollection's gracefulFinish to false, save and quit.
-     *
-     * TODO: TEST
      *
      * @param jobExecutionContext the DataCollection's context to fetch settings (Spring, repositories)
      */

@@ -27,6 +27,8 @@
         <unirest_version>1.4.9</unirest_version>
         <jackson_version>2.0.2</jackson_version>
         <quartz_version>2.2.1</quartz_version>
+        <jcommon_version>1.0.16</jcommon_version>
+        <freechart_version>1.0.13</freechart_version>
 	</properties>
 
 	<repositories>
@@ -75,6 +77,16 @@
 			<artifactId>quartz-jobs</artifactId>
 			<version>${quartz_version}</version>
 		</dependency>
+		<dependency>
+			<groupId>jfree</groupId>
+			<artifactId>jcommon</artifactId>
+			<version>${jcommon_version}</version>
+		</dependency>
+        <dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>${freechart_version}</version>
+        </dependency>
 	</dependencies>
 
 	<build>

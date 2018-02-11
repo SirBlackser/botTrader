@@ -8,7 +8,7 @@ import java.util.LinkedList;
 /**
  * @author Dries Blontrock
  */
-public class Algorithm01 {
+public class AlgorithmD01 {
 
     private long moveingAverage;
     private double moveingAverageNumber;
@@ -19,7 +19,7 @@ public class Algorithm01 {
     private LinkedList<Ask> buys;
     private double prevMoveingAverage;
 
-    public Algorithm01(double moveingAverageNumber, double percentageProfit, double sellDropOff) {
+    public AlgorithmD01(double moveingAverageNumber, double percentageProfit, double sellDropOff) {
         this.moveingAverageNumber = moveingAverageNumber;
         this.percentageProfit = 1.05 + (percentageProfit/100);
         this.sellDropOff = sellDropOff;

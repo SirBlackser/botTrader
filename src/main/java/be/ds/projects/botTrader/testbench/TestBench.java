@@ -6,8 +6,12 @@ import be.ds.projects.botTrader.testbench.exception.InsufficientCryptoBudgetExce
 import be.ds.projects.botTrader.testbench.exception.InsufficientTradeBudgetException;
 import be.ds.projects.botTrader.testbench.exception.TestBenchException;
 import be.ds.projects.botTrader.testbench.model.Budget;
+import be.ds.projects.botTrader.testbench.visualizer.ResultVisualizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static be.ds.projects.botTrader.testbench.CommandVerifier.canBuy;
 import static be.ds.projects.botTrader.testbench.CommandVerifier.canSell;
@@ -28,11 +32,20 @@ public abstract class TestBench implements Command {
 
     private DataCollectionHandler dataCollectionHandler;
 
+    private ResultVisualizer resultVisualizer;
+
     private Budget budget;
+
+    private List<Long> buyTimestamps;
+
+    private List<Long> sellTimestamps;
 
     public TestBench(final DataCollection dataCollection, final double initialBudget) {
         this.dataCollectionHandler = new DataCollectionHandler(dataCollection);
+        this.resultVisualizer = new ResultVisualizer(dataCollection);
         this.budget = new Budget(dataCollection.getCurrencyPair(), initialBudget);
+        this.buyTimestamps = new ArrayList<>();
+        this.sellTimestamps = new ArrayList<>();
     }
 
     @Override
@@ -42,6 +55,8 @@ public abstract class TestBench implements Command {
         final double cryptoTransferAmount = budget.getTradeCurrency().getAmount() / ticker.getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().setAmount(0.0);
+
+        addBuyTimestamp(ticker);
 
         LOGGER.info(getBuyLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), budget.getTradeCurrency().getAmount(), cryptoTransferAmount));
     }
@@ -58,6 +73,8 @@ public abstract class TestBench implements Command {
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().decreaseAmount(tradeCurrencyAmount);
 
+        addBuyTimestamp(ticker);
+
         LOGGER.info(getBuyLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), tradeCurrencyAmount, cryptoTransferAmount));
     }
 
@@ -70,6 +87,8 @@ public abstract class TestBench implements Command {
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().decreaseAmount(tradeCurrencyAmount);
 
+        addBuyTimestamp(ticker);
+
         LOGGER.info(getBuyLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), tradeCurrencyAmount, cryptoTransferAmount));
     }
 
@@ -80,6 +99,8 @@ public abstract class TestBench implements Command {
         final double tradeTransferAmount = budget.getCryptoCurrency().getAmount() * ticker.getLast();
         budget.getTradeCurrency().increaseAmount(tradeTransferAmount);
         budget.getCryptoCurrency().setAmount(0.0);
+
+        addSellTimestamp(ticker);
 
         LOGGER.info(getSellLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), budget.getCryptoCurrency().getAmount(), tradeTransferAmount));
     }
@@ -96,6 +117,8 @@ public abstract class TestBench implements Command {
         budget.getTradeCurrency().increaseAmount(cryptoCurrencyAmount);
         budget.getCryptoCurrency().decreaseAmount(cryptoCurrencyAmount);
 
+        addSellTimestamp(ticker);
+
         LOGGER.info(getSellLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), cryptoCurrencyAmount, tradeTransferAmount));
     }
 
@@ -108,7 +131,22 @@ public abstract class TestBench implements Command {
         budget.getTradeCurrency().increaseAmount(cryptoCurrencyAmount);
         budget.getCryptoCurrency().decreaseAmount(cryptoCurrencyAmount);
 
+        addSellTimestamp(ticker);
+
         LOGGER.info(getSellLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), cryptoCurrencyAmount, tradeTransferAmount));
+    }
+
+    @Override
+    public void visualizeAlgorithmResult() {
+        resultVisualizer.showAlgorithmResults(buyTimestamps, sellTimestamps);
+    }
+
+    private void addBuyTimestamp(final Ticker ticker) {
+        buyTimestamps.add(ticker.getTimestamp());
+    }
+
+    private void addSellTimestamp(final Ticker ticker) {
+        sellTimestamps.add(ticker.getTimestamp());
     }
 
 }

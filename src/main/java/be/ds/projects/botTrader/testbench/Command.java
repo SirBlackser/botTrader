@@ -22,4 +22,6 @@ public interface Command {
 
     void sell(final Long tickerTimestamp, final Float percentageAmount) throws TestBenchException;
 
+    void visualizeAlgorithmResult();
+
 }

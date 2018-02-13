@@ -30,7 +30,7 @@ public class AlgorithmS01 extends TestBench {
             }
             count++;
         }
-//        visualizeAlgorithmResult();
+        visualizeAlgorithmResult();
     }
 
 }

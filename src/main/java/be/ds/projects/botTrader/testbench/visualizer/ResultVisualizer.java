@@ -17,10 +17,11 @@ public class ResultVisualizer {
     }
 
     public void showAlgorithmResults(final List<Long> buyTimestamps, final List<Long> sellTimestamps) {
-        final ResultVisualizerFrame resultVisualizerFrame = new ResultVisualizerFrame(dataCollection, buyTimestamps, sellTimestamps);
-        resultVisualizerFrame.pack();
-        RefineryUtilities.centerFrameOnScreen(resultVisualizerFrame);
-        resultVisualizerFrame.setVisible(true);
+        new ResultVisualizerChart(dataCollection, buyTimestamps, sellTimestamps);
+//        final ResultVisualizerFrame resultVisualizerFrame = new ResultVisualizerFrame(dataCollection, buyTimestamps, sellTimestamps);
+//        resultVisualizerFrame.pack();
+//        RefineryUtilities.centerFrameOnScreen(resultVisualizerFrame);
+//        resultVisualizerFrame.setVisible(true);
     }
 
 }

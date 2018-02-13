@@ -1,6 +1,5 @@
 package be.ds.projects.botTrader.testbench;
 
-import be.ds.projects.botTrader.testbench.exception.InsufficientTradeBudgetException;
 import be.ds.projects.botTrader.testbench.model.Budget;
 
 /**

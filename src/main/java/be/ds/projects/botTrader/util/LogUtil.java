@@ -1,6 +1,5 @@
 package be.ds.projects.botTrader.util;
 
-import be.ds.projects.botTrader.testbench.model.Currency;
 import be.ds.projects.botTrader.testbench.model.CurrencyValue;
 
 /**
@@ -10,16 +9,18 @@ import be.ds.projects.botTrader.testbench.model.CurrencyValue;
  */
 public class LogUtil {
 
+    private static final String DECIMAL_FORMAT = "%.12f";
+
     public static String getBuyLogMessage(final Long tickerTimestamp, final CurrencyValue tradeCurrency, final CurrencyValue cryptoCurrency,
                                           final double tradeAmount, final double cryptoAmount) {
-        return "[" + tickerTimestamp + "] BUY - " + tradeAmount + " " + tradeCurrency.getCurrency().currency() +
-                " -> " + cryptoAmount + " " + cryptoCurrency.getCurrency().currency();
+        return "[" + tickerTimestamp + "] BUY  - " + String.format(DECIMAL_FORMAT, tradeAmount) + " " + tradeCurrency.getCurrency().currency().toUpperCase() +
+                " -> " + String.format(DECIMAL_FORMAT, cryptoAmount) + " " + cryptoCurrency.getCurrency().currency().toUpperCase();
     }
 
     public static String getSellLogMessage(final Long tickerTimestamp, final CurrencyValue tradeCurrency, final CurrencyValue cryptoCurrency,
                                            final double cryptoAmount, final double tradeAmount) {
-        return "[" + tickerTimestamp + "] SELL - " + cryptoAmount + " " + cryptoCurrency.getCurrency().currency() +
-                " -> " + tradeAmount + " " + tradeCurrency.getCurrency().currency();
+        return "[" + tickerTimestamp + "] SELL - " + String.format(DECIMAL_FORMAT, cryptoAmount) + " " + cryptoCurrency.getCurrency().currency().toUpperCase() +
+                " -> " + String.format(DECIMAL_FORMAT, tradeAmount) + " " + tradeCurrency.getCurrency().currency().toUpperCase();
     }
 
 }

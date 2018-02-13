@@ -11,11 +11,11 @@ import be.ds.projects.botTrader.testbench.model.Currency;
 public class CurrencyUtil {
 
     public static Currency getTradeCurrencyFromCurrencyPair(final CurrencyPair currencyPair) {
-        return getCurrencyForCurrencyDescription(currencyPair.currencyPair().substring(0, 3));
+        return getCurrencyForCurrencyDescription(currencyPair.currencyPair().substring(3));
     }
 
     public static Currency getCryptoCurrencyFromCurrencyPair(final CurrencyPair currencyPair) {
-        return getCurrencyForCurrencyDescription(currencyPair.currencyPair().substring(3));
+        return getCurrencyForCurrencyDescription(currencyPair.currencyPair().substring(0, 3));
     }
 
     private static Currency getCurrencyForCurrencyDescription(final String currencyDescription) {

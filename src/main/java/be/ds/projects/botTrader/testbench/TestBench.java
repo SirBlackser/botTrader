@@ -52,13 +52,14 @@ public abstract class TestBench implements Command {
     public void buy(final Long tickerTimestamp) throws TestBenchException {
         final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
-        final double cryptoTransferAmount = budget.getTradeCurrency().getAmount() / ticker.getLast();
+        final double tradeCurrencyAmount = budget.getTradeCurrency().getAmount();
+        final double cryptoTransferAmount = tradeCurrencyAmount / ticker.getLast();
         budget.getCryptoCurrency().increaseAmount(cryptoTransferAmount);
         budget.getTradeCurrency().setAmount(0.0);
 
         addBuyTimestamp(ticker);
 
-        LOGGER.info(getBuyLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), budget.getTradeCurrency().getAmount(), cryptoTransferAmount));
+        LOGGER.info(getBuyLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), tradeCurrencyAmount, cryptoTransferAmount));
     }
 
     @Override
@@ -96,13 +97,14 @@ public abstract class TestBench implements Command {
     public void sell(final Long tickerTimestamp) throws TestBenchException {
         final Ticker ticker = dataCollectionHandler.getTickerFromTimestamp(tickerTimestamp);
 
+        final double cryptoTransferAmount = budget.getCryptoCurrency().getAmount();
         final double tradeTransferAmount = budget.getCryptoCurrency().getAmount() * ticker.getLast();
         budget.getTradeCurrency().increaseAmount(tradeTransferAmount);
         budget.getCryptoCurrency().setAmount(0.0);
 
         addSellTimestamp(ticker);
 
-        LOGGER.info(getSellLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), budget.getCryptoCurrency().getAmount(), tradeTransferAmount));
+        LOGGER.info(getSellLogMessage(tickerTimestamp, budget.getTradeCurrency(), budget.getCryptoCurrency(), cryptoTransferAmount, tradeTransferAmount));
     }
 
     @Override

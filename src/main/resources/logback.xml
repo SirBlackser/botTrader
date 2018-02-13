@@ -15,7 +15,7 @@
         <file>${LOG_DIR}/testbench.log</file>
         <append>false</append>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%msg%n</pattern>
         </encoder>
     </appender>
 

@@ -6,6 +6,8 @@ import be.ds.projects.botTrader.testbench.exception.InvalidTickerTimestampExcept
 import be.ds.projects.botTrader.testbench.exception.TestBenchException;
 
 /**
+ * Class that interfaces with the supplied DataCollection. Implemented for performance gain.
+ *
  * @author Steven de Cleene
  */
 public class DataCollectionHandler {
@@ -28,6 +30,10 @@ public class DataCollectionHandler {
             }
         }
         throw new InvalidTickerTimestampException();
+    }
+
+    public DataCollection getDataCollection() {
+        return dataCollection;
     }
 
 }

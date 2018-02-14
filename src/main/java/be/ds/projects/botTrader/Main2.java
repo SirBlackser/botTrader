@@ -14,6 +14,14 @@ import static be.ds.projects.botTrader.util.JpaInitializeUtil.initialize;
 @SpringBootApplication
 public class Main2 {
 
+    /*
+        Let op de initialize call op lijn 23, deze komt van een static import die lazy loading gaat doen.
+
+        Standaard gaan datapoints van een datacollection, en asks en bids van een orderbook niet in de objecten steken.
+        Via initialize(datacollection) of initialize(orderbook) gaan deze erin gelaad worden.
+
+        Check JpaInitializeUtil voor meer info.
+     */
     public static void main(String... args) throws Exception {
         final ConfigurableApplicationContext ctx = SpringApplication.run(Main2.class, args);
         final DataCollectionRepository dataCollectionRepository = ctx.getBean("dataCollectionRepository", DataCollectionRepository.class);

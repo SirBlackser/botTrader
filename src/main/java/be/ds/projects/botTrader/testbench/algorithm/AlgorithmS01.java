@@ -19,6 +19,14 @@ public class AlgorithmS01 extends TestBench {
         this.dataCollection = dataCollection;
     }
 
+    /*
+        er zijn 3 buys en 3 sells die je kan gebruiken -> check Command class (of implementatie in TestBench)
+
+        op het einde van het algoritme kan je visualizeAlgorithmResult() oproepen, dit maakt een chart aan in
+        botTrader/charts waar je de values kunt zien, samen met de momenten waarop je algoritme buyed en selled.
+        Momenteel kan die nog niet zeggen hoeveel je wanneer koopt/verkoopt, maar dit is al goed genoeg om te zien dat
+        het algoritme op de juiste momenten iets doet.
+     */
     public void execute() throws TestBenchException {
         int count = 0;
         for (final DataPoint dataPoint : dataCollection.getDataPoints()) {

@@ -90,11 +90,15 @@ public class ResultVisualizer {
         plot.setDomainAxis(0, xAxis);
         plot.setRangeAxis(0, yAxis);
 
-        plot.setDataset(1, buys);
-        plot.setRenderer(1, shapeRendererBuys);
+        if(buyTimestamps.size() > 0) {
+            plot.setDataset(1, buys);
+            plot.setRenderer(1, shapeRendererBuys);
+        }
 
-        plot.setDataset(2, sells);
-        plot.setRenderer(2, shapeRendererSells);
+        if(sellTimestamps.size() > 0) {
+            plot.setDataset(2, sells);
+            plot.setRenderer(2, shapeRendererSells);
+        }
 
         /*
             Construct chart
